@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fix concatenation of multiple matching tags in Title extractor
 - Fix exception when no matches are found in Title extractor
 
+## [0.6.2] - 2015.11.22
+- Scope the title tag selector to the head element
+
 ## [0.6.1] - 2015.11.07
 - Fix `httpoison_options` default option error
 
