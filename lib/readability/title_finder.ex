@@ -72,6 +72,9 @@ defmodule Readability.TitleFinder do
   defp clean_title([]) do
     ""
   end
+  defp clean_title([title]) when is_binary(title) do
+    String.strip(title)
+  end
   defp clean_title(html_tree) do
     html_tree
     |> Floki.text()
