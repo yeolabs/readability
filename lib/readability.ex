@@ -34,6 +34,7 @@ defmodule Readability do
   alias Readability.Summary
   alias Readability.Helper
   alias Readability.TopImageFinder
+  alias Readability.DescriptionFinder
 
   @default_options [retry_length: 250,
                     min_text_length: 25,
@@ -82,8 +83,9 @@ defmodule Readability do
     %Summary{title: title(html_tree),
              authors: authors(html_tree),
              article_html: readable_html(article_tree),
-             article_text: readable_text(article_tree), 
-             top_image: top_image(html_tree)
+             article_text: readable_text(article_tree),
+             top_image: top_image(html_tree),
+             description: description(html_tree),
            }
   end
 
@@ -145,6 +147,10 @@ defmodule Readability do
   @spec top_image(binary | html_tree) :: binary
   def top_image(html) when is_binary(html), do: html |> parse |> top_image
   def top_image(html_tree), do: TopImageFinder.top_image(html_tree)
+
+  @spec description(binary | html_tree) :: binary
+  def description(html) when is_binary(html), do: html |> parse |> description
+  def description(html_tree), do: DescriptionFinder.description(html_tree)
 
   @doc """
   return attributes, tags cleaned html
